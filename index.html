@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">AI Market Vision Analyst</title>
+    <title>AI Market Predictor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* Variabel Warna Disesuaikan untuk Tampilan Lebih Kontemporer */
         :root {
-            --primary-color: #007bff; /* Biru Profesional */
-            --primary-dark: #0056b3;
-            --secondary-color: #495057; /* Abu-abu Gelap */
-            --background-light: #f8f9fa; /* Latar Belakang Sangat Cerah */
+            --primary-color: #3498db; /* Biru cerah */
+            --primary-dark: #2980b9;
+            --secondary-color: #2c3e50; /* Abu-abu tua */
+            --background-light: #ecf0f1; /* Abu-abu sangat muda */
             --card-background: #ffffff;
-            --text-color: #212529;
-            --border-color: #ced4da;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --success-color: #28a745; 
-            --error-color: #dc3545; 
-            --warning-color: #ffc107;
+            --text-color: #333;
+            --border-color: #dcdcdc;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --success-color: #27ae60; /* Hijau */
+            --error-color: #e74c3c; /* Merah */
+            --warning-color: #f39c12; /* Kuning/Oranye */
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--background-light);
             color: var(--text-color);
             margin: 0;
@@ -39,73 +38,70 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
 
         header {
             text-align: center;
-            padding: 20px 0;
-            position: relative;
+            margin-bottom: 20px;
+            position: relative; /* Untuk posisi language-switcher */
         }
 
         header h1 {
             font-family: 'Montserrat', sans-serif;
             color: var(--primary-dark);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-weight: 700;
-            font-size: 2.8em;
+            font-size: 2.5em;
         }
 
         .subtitle {
             color: var(--secondary-color);
-            font-size: 1.1em;
-            max-width: 800px;
+            font-size: 1.2em;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Language Switcher - Diletakkan Lebih Rapi */
+        /* Language Switcher */
         .language-switcher {
             position: absolute;
             top: 0;
             right: 0;
             display: flex;
-            gap: 5px;
+            gap: 10px;
         }
         .language-switcher button {
-            background-color: transparent;
-            color: var(--secondary-color);
-            border: 1px solid var(--border-color);
-            padding: 5px 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 0.9em;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
         .language-switcher button:hover {
-            background-color: var(--border-color);
+            background-color: var(--primary-dark);
         }
         .language-switcher button.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+            background-color: var(--secondary-color);
+            border: 1px solid var(--primary-color);
         }
 
         main {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
 
         .card {
             background-color: var(--card-background);
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-color);
         }
 
         .card h2 {
@@ -113,9 +109,9 @@
             color: var(--primary-color);
             margin-top: 0;
             margin-bottom: 25px;
-            font-weight: 700;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 8px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
             display: inline-block;
         }
 
@@ -127,105 +123,102 @@
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--secondary-color);
+            font-weight: 500;
+            color: #555;
         }
 
         input[type="text"],
         select,
         textarea {
-            width: 100%;
+            width: calc(100% - 24px); /* Kurangi padding + border */
             padding: 12px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1em;
             box-sizing: border-box;
-            background-color: #f8f9fa; /* Latar belakang input sedikit abu */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="file"] {
+            padding: 10px 0;
         }
 
         input[type="text"]:focus,
         select:focus,
         textarea:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
             outline: none;
-            background-color: #ffffff;
         }
 
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
-        /* Grouping untuk 2 kolom input di layar lebar */
-        .input-group-row {
+        .form-row {
             display: flex;
             gap: 20px;
             margin-bottom: 20px;
+            flex-wrap: wrap; /* Untuk responsif */
         }
-        .input-group-row > .form-group {
+
+        .form-row .form-group {
             flex: 1;
+            min-width: 250px; /* Minimal lebar untuk setiap input di baris */
             margin-bottom: 0;
         }
-        @media (max-width: 767px) {
-            .input-group-row {
-                flex-direction: column;
-            }
-        }
 
-
-        /* --- File Upload Area (Diperbarui) --- */
+        /* --- File Upload Area --- */
         .upload-area {
-            border: 2px dashed var(--primary-color);
-            border-radius: 8px;
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background-color: rgba(0, 123, 255, 0.05); /* Sedikit warna primary */
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            margin-bottom: 20px;
         }
         .upload-area:hover {
-            border-color: var(--primary-dark);
-            background-color: rgba(0, 123, 255, 0.1);
+            border-color: var(--primary-color);
+            background-color: #f9f9f9;
         }
         .upload-area.drag-over {
-            border-color: var(--error-color);
-            background-color: #fbe2e4;
+            border-color: var(--primary-color);
+            background-color: #e0f2f7;
         }
         .upload-area input[type="file"] {
-            display: none;
+            display: none; /* Sembunyikan input file asli */
         }
         .upload-area p {
             margin: 0;
-            color: var(--secondary-color);
+            color: #777;
             font-size: 1.1em;
-            font-weight: 500;
         }
         .upload-area img.preview {
             max-width: 100%;
-            max-height: 250px;
-            margin-top: 20px;
-            border-radius: 6px;
-            border: 2px solid var(--border-color);
-            object-fit: contain;
+            max-height: 200px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         .upload-area .file-name {
             margin-top: 10px;
             font-size: 0.9em;
             color: var(--primary-dark);
-            font-weight: 600;
+            font-weight: 500;
         }
+
 
         /* --- Buttons --- */
         .btn {
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 1.1em;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -236,44 +229,42 @@
             background-color: var(--primary-color);
             color: white;
             width: 100%;
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+            margin-top: 15px;
         }
 
-        .primary-btn:hover:not(:disabled) {
+        .primary-btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 123, 255, 0.4);
         }
 
         .primary-btn:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.8;
             transform: none;
-            box-shadow: none;
         }
 
-        /* --- Output Section Styling (Diperbarui) --- */
+        /* --- Output Section --- */
         .output-section .analysis-result {
             background-color: var(--background-light);
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
-            min-height: 350px; /* Diperbesar untuk tampilan profesional */
+            min-height: 250px;
             overflow-y: auto;
             color: var(--text-color);
-            white-space: pre-wrap;
-            word-break: break-word;
+            white-space: pre-wrap; /* Mempertahankan spasi dan baris baru */
+            word-break: break-word; /* Mencegah overflow kata panjang */
+            margin-bottom: 20px;
         }
         .output-section .placeholder-text {
             color: #888;
             font-style: italic;
         }
         .output-section .result-item {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px dashed #eee;
         }
         .output-section .result-item:last-child {
             border-bottom: none;
@@ -281,19 +272,16 @@
             padding-bottom: 0;
         }
         .output-section .result-item h3 {
-            color: var(--secondary-color);
+            color: var(--primary-dark);
             margin-top: 0;
             margin-bottom: 5px;
-            font-size: 1.3em;
-            font-weight: 600;
+            font-size: 1.2em;
         }
         .output-section .result-item p {
             margin: 0;
-            font-size: 1.1em;
         }
         .output-section .result-item strong {
             color: var(--primary-color);
-            font-weight: 700;
         }
 
 
@@ -301,11 +289,9 @@
         .message-box {
             margin-top: 20px;
             padding: 15px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-align: center;
-            font-weight: 600;
-            font-size: 1em;
-            display: none; /* Default hidden */
+            font-weight: 500;
         }
 
         .success-message {
@@ -321,7 +307,7 @@
         }
         .warning-message {
             background-color: #fff3cd;
-            color: #856404; /* Warna teks gelap untuk kuning */
+            color: var(--warning-color);
             border: 1px solid var(--warning-color);
         }
 
@@ -342,25 +328,25 @@
         footer {
             text-align: center;
             margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
             color: var(--secondary-color);
             font-size: 0.9em;
         }
 
         /* --- Responsive Adjustments --- */
-        @media (min-width: 992px) {
+        @media (min-width: 768px) {
             main {
                 flex-direction: row;
             }
-            .input-section {
-                flex: 4; /* Input 40% */
-                max-width: 450px;
+            .input-section, .output-section {
+                flex: 1;
             }
             .output-section {
-                flex: 6; /* Output 60% */
                 display: flex;
                 flex-direction: column;
+            }
+            .language-switcher {
+                top: 20px; /* Sesuaikan posisi di desktop */
+                right: 20px;
             }
         }
     </style>
@@ -372,42 +358,39 @@
                 <button id="langEnBtn" class="active" data-lang="en">EN</button>
                 <button id="langIdBtn" data-lang="id">ID</button>
             </div>
-            <h1 id="headerTitle">AI Market Vision Analyst</h1>
-            <p id="headerSubtitle" class="subtitle">Upload your chart screenshot, and our AI Vision model will provide a professional technical analysis.</p>
+            <h1 id="headerTitle">AI Market Predictor</h1>
+            <p id="headerSubtitle" class="subtitle">Upload your latest chart screenshot and let AI analyze market direction for Crypto, Forex, and Commodities.</p>
         </header>
 
         <main>
             <section class="input-section card">
-                <h2 id="inputSectionTitle">Input Chart & Parameters</h2>
+                <h2 id="inputSectionTitle">Upload Chart & Details</h2>
                 <form id="chartAnalysisForm">
-                    
-                    <div class="input-group-row">
-                        <div class="form-group">
-                            <label id="labelAssetType" for="assetType">Asset Type:</label>
-                            <select id="assetType" required>
-                                </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label id="labelTimeframe" for="timeframe">Timeframe:</label>
-                            <select id="timeframe" required>
-                                </select>
-                        </div>
+                    <div class="form-group">
+                        <label id="labelAssetType" for="assetType">Asset Type:</label>
+                        <select id="assetType" required>
+                            </select>
                     </div>
 
                     <div class="form-group">
-                        <label id="labelUploadChart">Upload Chart Screenshot (JPG/PNG, max 5MB):</label>
+                        <label id="labelTimeframe" for="timeframe">Timeframe:</label>
+                        <select id="timeframe" required>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="labelAdditionalNotes" for="additionalNotes">Additional Context/Notes (Optional):</label>
+                        <textarea id="additionalNotes" rows="3" placeholder="e.g., 'Looking for resistance levels', 'Is this a bullish setup?'"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="labelUploadChart">Upload Chart Screenshot:</label>
                         <div id="uploadArea" class="upload-area">
-                            <input type="file" id="chartImageInput" accept="image/jpeg, image/png" required>
+                            <input type="file" id="chartImageInput" accept="image/*" required>
                             <p id="uploadAreaText">Drag & drop your image here, or click to browse</p>
                             <img id="imagePreview" class="preview" style="display: none;">
                             <div id="fileNameDisplay" class="file-name" style="display: none;"></div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label id="labelAdditionalNotes" for="additionalNotes">Specific Query/Notes (Optional):</label>
-                        <textarea id="additionalNotes" rows="3" placeholder="e.g., 'What are the next key resistance and support levels?', 'Is this an overbought condition?'"></textarea>
                     </div>
 
                     <button type="submit" id="analyzeBtn" class="btn primary-btn">
@@ -418,120 +401,129 @@
             </section>
 
             <section class="output-section card">
-                <h2 id="outputSectionTitle">Professional Analysis Report</h2>
+                <h2 id="outputSectionTitle">Analysis Results</h2>
                 <div id="analysisResult" class="analysis-result">
-                    <p id="placeholderAnalysis" class="placeholder-text">The detailed market analysis will appear here after the AI Vision model processes your chart.</p>
+                    <p id="placeholderAnalysis" class="placeholder-text">Upload a chart and click 'Analyze Chart' to see the AI's prediction here.</p>
                 </div>
-                <div id="message" class="message-box"></div>
+                <div id="message" class="message-box" style="display: none;"></div>
             </section>
         </main>
 
         <footer>
-            <p id="footerText">&copy; 2025 AI Market Vision Analyst. All rights reserved. Trading involves risk.</p>
+            <p id="footerText">&copy; 2025 AI Market Predictor. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Element Selectors
             const langEnBtn = document.getElementById('langEnBtn');
             const langIdBtn = document.getElementById('langIdBtn');
-            const elementsToTranslate = {
-                pageTitle: document.getElementById('pageTitle'),
-                headerTitle: document.getElementById('headerTitle'),
-                headerSubtitle: document.getElementById('headerSubtitle'),
-                inputSectionTitle: document.getElementById('inputSectionTitle'),
-                labelAssetType: document.getElementById('labelAssetType'),
-                labelTimeframe: document.getElementById('labelTimeframe'),
-                labelAdditionalNotes: document.getElementById('labelAdditionalNotes'),
-                additionalNotesTextarea: document.getElementById('additionalNotes'),
-                labelUploadChart: document.getElementById('labelUploadChart'),
-                uploadAreaText: document.getElementById('uploadAreaText'),
-                buttonText: document.getElementById('buttonText'),
-                outputSectionTitle: document.getElementById('outputSectionTitle'),
-                placeholderAnalysis: document.getElementById('placeholderAnalysis'),
-                footerText: document.getElementById('footerText'),
-            };
+
+            const headerTitle = document.getElementById('headerTitle');
+            const headerSubtitle = document.getElementById('headerSubtitle');
+            const inputSectionTitle = document.getElementById('inputSectionTitle');
+            const labelAssetType = document.getElementById('labelAssetType');
+            const labelTimeframe = document.getElementById('labelTimeframe');
+            const labelAdditionalNotes = document.getElementById('labelAdditionalNotes');
+            const additionalNotesTextarea = document.getElementById('additionalNotes'); // Need to update placeholder
+            const labelUploadChart = document.getElementById('labelUploadChart');
+            const uploadAreaText = document.getElementById('uploadAreaText');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const buttonText = document.getElementById('buttonText');
+            const outputSectionTitle = document.getElementById('outputSectionTitle');
+            const placeholderAnalysis = document.getElementById('placeholderAnalysis');
+            const footerText = document.getElementById('footerText');
+            const messageBox = document.getElementById('message');
 
             const assetTypeSelect = document.getElementById('assetType');
             const timeframeSelect = document.getElementById('timeframe');
+
+
             const chartAnalysisForm = document.getElementById('chartAnalysisForm');
             const chartImageInput = document.getElementById('chartImageInput');
             const uploadArea = document.getElementById('uploadArea');
             const imagePreview = document.getElementById('imagePreview');
             const fileNameDisplay = document.getElementById('fileNameDisplay');
-            const analyzeBtn = document.getElementById('analyzeBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const analysisResultDiv = document.getElementById('analysisResult');
-            const messageBox = document.getElementById('message');
-
 
             let uploadedFile = null;
-            let currentLang = localStorage.getItem('appLang') || 'en';
-            const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+            let currentLang = localStorage.getItem('appLang') || 'en'; // Default ke 'en' atau dari local storage
 
             const translations = {
                 en: {
-                    pageTitle: "AI Market Vision Analyst",
-                    headerTitle: "AI Market Vision Analyst",
-                    headerSubtitle: "Upload your chart screenshot, and our AI Vision model will provide a professional technical analysis.",
-                    inputSectionTitle: "Input Chart & Parameters",
+                    headerTitle: "AI Market Predictor",
+                    headerSubtitle: "Upload your latest chart screenshot and let AI analyze market direction for Crypto, Forex, and Commodities.",
+                    inputSectionTitle: "Upload Chart & Details",
                     labelAssetType: "Asset Type:",
+                    selectAssetType: "Select Asset Type",
+                    crypto: "Crypto",
+                    forex: "Forex",
+                    commodity: "Commodity",
+                    stock: "Stock",
                     labelTimeframe: "Timeframe:",
-                    labelAdditionalNotes: "Specific Query/Notes (Optional):",
-                    placeholderNotes: "e.g., 'What are the next key resistance and support levels?', 'Is this an overbought condition?'",
-                    labelUploadChart: "Upload Chart Screenshot (JPG/PNG, max 5MB):",
+                    selectTimeframe: "Select Timeframe",
+                    hour: "Hour", // For 1H, 4H
+                    day: "Day", // For 1D
+                    week: "Week", // For 1W
+                    month: "Month", // For 1M
+                    labelAdditionalNotes: "Additional Context/Notes (Optional):",
+                    placeholderNotes: "e.g., 'Looking for resistance levels', 'Is this a bullish setup?'",
+                    labelUploadChart: "Upload Chart Screenshot:",
                     uploadAreaText: "Drag & drop your image here, or click to browse",
                     analyzeButton: "Analyze Chart",
                     analyzingButton: "Analyzing...",
-                    outputSectionTitle: "Professional Analysis Report",
-                    placeholderAnalysis: "The detailed market analysis will appear here after the AI Vision model processes your chart.",
-                    footerText: "&copy; 2025 AI Market Vision Analyst. All rights reserved. Trading involves risk.",
-                    // Select Options
-                    selectAssetType: "Select Asset Type",
-                    selectTimeframe: "Select Timeframe",
+                    outputSectionTitle: "Analysis Results",
+                    placeholderAnalysis: "Upload a chart and click 'Analyze Chart' to see the AI's prediction here.",
+                    footerText: "&copy; 2025 AI Market Predictor. All rights reserved.",
                     // Messages
-                    msgUploadImage: "Please upload a valid image file (JPG or PNG).",
+                    msgUploadImage: "Please upload an image file (e.g., JPG, PNG).",
                     msgFileSize: "Image file size exceeds 5MB. Please upload a smaller image.",
                     msgNoImageUploaded: "Please upload a chart screenshot.",
                     msgSelectAssetTimeframe: "Please select Asset Type and Timeframe.",
                     msgAnalysisComplete: "Analysis complete!",
                     msgServerError: "Server error during analysis. Please try again.",
-                    msgFailedAnalysis: "Failed to get analysis. Server response was invalid.",
+                    msgFailedAnalysis: "Failed to get analysis.",
                     msgErrorPrefix: "Error: "
                 },
                 id: {
-                    pageTitle: "Analisis Visi Pasar AI",
-                    headerTitle: "Analis Visi Pasar AI",
-                    headerSubtitle: "Unggah tangkapan layar grafik Anda, dan model Visi AI kami akan memberikan analisis teknis profesional.",
-                    inputSectionTitle: "Input Grafik & Parameter",
+                    headerTitle: "Prediktor Pasar AI",
+                    headerSubtitle: "Unggah tangkapan layar grafik terbaru Anda dan biarkan AI menganalisis arah pasar untuk Kripto, Forex, dan Komoditas.",
+                    inputSectionTitle: "Unggah Grafik & Detail",
                     labelAssetType: "Jenis Aset:",
+                    selectAssetType: "Pilih Jenis Aset",
+                    crypto: "Kripto",
+                    forex: "Forex",
+                    commodity: "Komoditas",
+                    stock: "Saham",
                     labelTimeframe: "Jangka Waktu:",
-                    labelAdditionalNotes: "Pertanyaan/Catatan Spesifik (Opsional):",
-                    placeholderNotes: "cth: 'Apa level resistensi dan dukungan utama berikutnya?', 'Apakah ini kondisi jenuh beli?'",
-                    labelUploadChart: "Unggah Tangkapan Layar Grafik (JPG/PNG, maks 5MB):",
+                    selectTimeframe: "Pilih Jangka Waktu",
+                    hour: "Jam", // For 1H, 4H
+                    day: "Hari", // For 1D
+                    week: "Minggu", // For 1W
+                    month: "Bulan", // For 1M
+                    labelAdditionalNotes: "Konteks/Catatan Tambahan (Opsional):",
+                    placeholderNotes: "cth: 'Mencari level resistensi', 'Apakah ini setup bullish?'",
+                    labelUploadChart: "Unggah Tangkapan Layar Grafik:",
                     uploadAreaText: "Seret & lepas gambar Anda di sini, atau klik untuk mencari",
                     analyzeButton: "Analisis Grafik",
                     analyzingButton: "Menganalisis...",
-                    outputSectionTitle: "Laporan Analisis Profesional",
-                    placeholderAnalysis: "Analisis pasar terperinci akan muncul di sini setelah model Visi AI memproses grafik Anda.",
-                    footerText: "&copy; 2025 Analis Visi Pasar AI. Semua Hak Dilindungi. Perdagangan melibatkan risiko.",
-                    // Select Options
-                    selectAssetType: "Pilih Jenis Aset",
-                    selectTimeframe: "Pilih Jangka Waktu",
+                    outputSectionTitle: "Hasil Analisis",
+                    placeholderAnalysis: "Unggah grafik dan klik 'Analisis Grafik' untuk melihat prediksi AI di sini.",
+                    footerText: "&copy; 2025 Prediktor Pasar AI. Semua Hak Dilindungi.",
                     // Messages
-                    msgUploadImage: "Mohon unggah file gambar yang valid (JPG atau PNG).",
+                    msgUploadImage: "Mohon unggah file gambar (misal: JPG, PNG).",
                     msgFileSize: "Ukuran file gambar melebihi 5MB. Mohon unggah gambar yang lebih kecil.",
                     msgNoImageUploaded: "Mohon unggah tangkapan layar grafik.",
                     msgSelectAssetTimeframe: "Mohon pilih Jenis Aset dan Jangka Waktu.",
                     msgAnalysisComplete: "Analisis selesai!",
                     msgServerError: "Terjadi kesalahan server saat analisis. Mohon coba lagi.",
-                    msgFailedAnalysis: "Gagal mendapatkan analisis. Respon server tidak valid.",
+                    msgFailedAnalysis: "Gagal mendapatkan analisis.",
                     msgErrorPrefix: "Kesalahan: "
                 }
             };
 
-            const assetTypesData = {
+            const assetTypes = {
                 '': { en: 'Select Asset Type', id: 'Pilih Jenis Aset' },
                 'Crypto': { en: 'Crypto', id: 'Kripto' },
                 'Forex': { en: 'Forex', id: 'Forex' },
@@ -539,26 +531,21 @@
                 'Stock': { en: 'Stock', id: 'Saham' }
             };
 
-            const timeframesData = {
+            const timeframes = {
                 '': { en: 'Select Timeframe', id: 'Pilih Jangka Waktu' },
-                'M30': { en: '30 Minutes (M30)', id: '30 Menit (M30)' },
-                '1H': { en: '1 Hour (1H)', id: '1 Jam (1H)' },
-                '4H': { en: '4 Hour (4H)', id: '4 Jam (4H)' },
-                '1D': { en: '1 Day (1D)', id: '1 Hari (1D)' },
-                '1W': { en: '1 Week (1W)', id: '1 Minggu (1W)' },
-                '1M': { en: '1 Month (1M)', id: '1 Bulan (1M)' }
+                '1H': { en: '1 Hour', id: '1 Jam' },
+                '4H': { en: '4 Hour', id: '4 Jam' },
+                '1D': { en: '1 Day', id: '1 Hari' },
+                '1W': { en: '1 Week', id: '1 Minggu' },
+                '1M': { en: '1 Month', id: '1 Bulan' }
             };
 
             function populateSelectOptions(selectElement, optionsData) {
-                const selectedValue = selectElement.value; // Simpan nilai yang saat ini dipilih
-                selectElement.innerHTML = '';
+                selectElement.innerHTML = ''; // Clear existing options
                 for (const value in optionsData) {
                     const option = document.createElement('option');
                     option.value = value;
                     option.textContent = optionsData[value][currentLang];
-                    if (value === selectedValue) {
-                        option.selected = true; // Pertahankan pilihan yang sama
-                    }
                     selectElement.appendChild(option);
                 }
             }
@@ -566,35 +553,41 @@
             function updateUI() {
                 const t = translations[currentLang];
 
-                // Update static texts
-                for (const key in elementsToTranslate) {
-                    if (elementsToTranslate[key]) {
-                        if (key === 'additionalNotesTextarea') {
-                            elementsToTranslate[key].placeholder = t.placeholderNotes;
-                        } else if (key === 'footerText') {
-                            elementsToTranslate[key].innerHTML = t[key];
-                        } else {
-                            elementsToTranslate[key].textContent = t[key];
-                        }
-                    }
-                }
+                headerTitle.textContent = t.headerTitle;
+                headerSubtitle.textContent = t.headerSubtitle;
+                inputSectionTitle.textContent = t.inputSectionTitle;
+                labelAssetType.textContent = t.labelAssetType;
+                labelTimeframe.textContent = t.labelTimeframe;
+                labelAdditionalNotes.textContent = t.labelAdditionalNotes;
+                additionalNotesTextarea.placeholder = t.placeholderNotes;
+                labelUploadChart.textContent = t.labelUploadChart;
+                uploadAreaText.textContent = t.uploadAreaText;
+                buttonText.textContent = t.analyzeButton;
+                outputSectionTitle.textContent = t.outputSectionTitle;
+                placeholderAnalysis.textContent = t.placeholderAnalysis;
+                footerText.innerHTML = t.footerText; // Use innerHTML for copyright symbol
 
                 // Update select options
-                populateSelectOptions(assetTypeSelect, assetTypesData);
-                populateSelectOptions(timeframeSelect, timeframesData);
+                populateSelectOptions(assetTypeSelect, assetTypes);
+                populateSelectOptions(timeframeSelect, timeframes);
 
                 // Update active language button style
                 langEnBtn.classList.toggle('active', currentLang === 'en');
                 langIdBtn.classList.toggle('active', currentLang === 'id');
-                
-                // Clear the message box on lang switch (to prevent displaying old error in wrong lang)
-                hideMessage(); 
+
+                // Re-evaluate current messages in correct language if any
+                if (messageBox.style.display === 'block') {
+                    // This is a simplified approach. For more robust message handling,
+                    // you'd typically store message keys and re-display them.
+                    // For now, if a message is shown, it won't auto-translate unless re-triggered.
+                    // This is acceptable for simple cases.
+                }
             }
 
             // Initial UI update
             updateUI();
 
-            // --- Language Switcher Event Listeners ---
+            // Language Switcher Event Listeners
             langEnBtn.addEventListener('click', () => {
                 currentLang = 'en';
                 localStorage.setItem('appLang', 'en');
@@ -607,7 +600,7 @@
                 updateUI();
             });
 
-            // --- File Upload Logic ---
+            // --- File Upload Logic (Drag & Drop) ---
             uploadArea.addEventListener('click', () => chartImageInput.click());
             
             uploadArea.addEventListener('dragover', (e) => {
@@ -633,14 +626,18 @@
             });
 
             function handleFile(file) {
-                if (!file.type.startsWith('image/jpeg') && !file.type.startsWith('image/png')) {
+                if (!file.type.startsWith('image/')) {
                     showMessage(translations[currentLang].msgUploadImage, 'error');
-                    resetUploadArea();
+                    imagePreview.style.display = 'none';
+                    fileNameDisplay.style.display = 'none';
+                    uploadedFile = null;
                     return;
                 }
-                if (file.size > MAX_FILE_SIZE) { 
+                if (file.size > 5 * 1024 * 1024) { // 5 MB limit
                     showMessage(translations[currentLang].msgFileSize, 'error');
-                    resetUploadArea();
+                    imagePreview.style.display = 'none';
+                    fileNameDisplay.style.display = 'none';
+                    uploadedFile = null;
                     return;
                 }
 
@@ -651,27 +648,18 @@
                     imagePreview.style.display = 'block';
                     fileNameDisplay.textContent = file.name;
                     fileNameDisplay.style.display = 'block';
-                    uploadAreaText.style.display = 'none'; // Sembunyikan teks panduan
                 };
                 reader.readAsDataURL(file);
-                hideMessage();
+                hideMessage(); // Clear any previous error message
             }
 
-            function resetUploadArea() {
-                uploadedFile = null;
-                chartImageInput.value = ''; // Reset input file
-                imagePreview.style.display = 'none';
-                imagePreview.src = '';
-                fileNameDisplay.style.display = 'none';
-                fileNameDisplay.textContent = '';
-                uploadAreaText.style.display = 'block';
-            }
-
-            // --- Form Submission Logic (Fiktif) ---
+            // --- Form Submission Logic ---
             chartAnalysisForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
 
-                // Validasi Input
+                analysisResultDiv.innerHTML = `<p class="placeholder-text">${translations[currentLang].analyzingButton}...</p>`;
+                hideMessage();
+
                 if (!uploadedFile) {
                     showMessage(translations[currentLang].msgNoImageUploaded, 'error');
                     return;
@@ -680,55 +668,31 @@
                     showMessage(translations[currentLang].msgSelectAssetTimeframe, 'error');
                     return;
                 }
-                
-                // Tampilkan pesan loading
-                analysisResultDiv.innerHTML = `<p class="placeholder-text">${translations[currentLang].analyzingButton}...</p>`;
-                hideMessage();
+
                 setLoadingState(true);
 
-                // ======================================================================
-                // PERHATIAN: Bagian ini adalah MOCK UP (simulasi) karena AI Anda (LLM) 
-                // tidak memiliki kemampuan Vision/Gambar tanpa API server nyata yang terpisah.
-                // ======================================================================
-                
-                const mockData = {
-                    assetType: assetTypeSelect.value,
-                    timeframe: timeframeSelect.value,
-                    notes: elementsToTranslate.additionalNotesTextarea.value,
-                    imageName: uploadedFile.name,
-                    outputLanguage: currentLang
-                };
-
-                console.log("Mock API Request Sent:", mockData);
-                
-                // Simulasi Analisis (Delay 3 detik)
-                await new Promise(resolve => setTimeout(resolve, 3000)); 
-
-                // Hasil Analisis Fiktif (Contoh Data JSON untuk displayAnalysisResults)
-                const mockAnalysisResult = {
-                    en: {
-                        direction: "Strong Bullish Continuation",
-                        rationale: `The chart shows a clear breakout above the prior resistance at ${mockData.timeframe === 'M30' ? '$61,500' : '$59,800'} supported by high trading volume (validated by Vision model). The RSI remains in the healthy bullish zone (around 65). This indicates strong buyer conviction after the recent consolidation phase.`,
-                        support: `${mockData.timeframe === 'M30' ? '$61,200 (Immediate)' : '$59,000 (Key Support)'}`,
-                        resistance: `${mockData.timeframe === 'M30' ? '$62,500 (Target 1)' : '$65,000 (Target 2)'}`,
-                        riskWarning: "The M30 timeframe is highly volatile. Use a tight Stop Loss below the last major swing low to manage risk."
-                    },
-                    id: {
-                        direction: "Lanjutan Bullish Kuat",
-                        rationale: `Grafik menunjukkan breakout yang jelas di atas resistensi sebelumnya di ${mockData.timeframe === 'M30' ? '$61,500' : '$59,800'} yang didukung oleh volume perdagangan tinggi (divalidasi oleh model Visi). RSI tetap berada di zona bullish yang sehat (sekitar 65). Ini mengindikasikan keyakinan pembeli yang kuat setelah fase konsolidasi baru-baru ini.`,
-                        support: `${mockData.timeframe === 'M30' ? '$61,200 (Dukungan Terdekat)' : '$59,000 (Dukungan Utama)'}`,
-                        resistance: `${mockData.timeframe === 'M30' ? '$62,500 (Target 1)' : '$65,000 (Target 2)'}`,
-                        riskWarning: "Jangka waktu M30 sangat fluktuatif. Gunakan Stop Loss ketat di bawah ayunan rendah utama terakhir untuk mengelola risiko."
-                    }
-                };
+                const formData = new FormData();
+                formData.append('image', uploadedFile);
+                formData.append('assetType', assetTypeSelect.value);
+                formData.append('timeframe', timeframeSelect.value);
+                formData.append('additionalNotes', additionalNotesTextarea.value);
+                formData.append('outputLanguage', currentLang); // Kirim bahasa output ke API
 
                 try {
-                    // Cek apakah output language tersedia di mockAnalysisResult
-                    const data = mockAnalysisResult[currentLang];
-                    if (!data) throw new Error("Analysis data for selected language is missing.");
+                    const response = await fetch('/api/analyze-chart', {
+                        method: 'POST',
+                        body: formData, // FormData otomatis set Content-Type: multipart/form-data
+                    });
 
-                    displayAnalysisResults(data);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || translations[currentLang].msgServerError);
+                    }
+
+                    const data = await response.json();
+                    displayAnalysisResults(data.analysis);
                     showMessage(translations[currentLang].msgAnalysisComplete, 'success');
+
                 } catch (err) {
                     console.error('Analysis error:', err);
                     analysisResultDiv.innerHTML = `<p class="placeholder-text">${translations[currentLang].msgFailedAnalysis}</p>`;
@@ -741,7 +705,7 @@
             // --- Helper Functions ---
             function setLoadingState(isLoading) {
                 analyzeBtn.disabled = isLoading;
-                elementsToTranslate.buttonText.textContent = isLoading ? translations[currentLang].analyzingButton : translations[currentLang].analyzeButton;
+                buttonText.textContent = isLoading ? translations[currentLang].analyzingButton : translations[currentLang].analyzeButton;
                 loadingSpinner.style.display = isLoading ? 'inline-block' : 'none';
             }
 
@@ -757,26 +721,28 @@
 
             function displayAnalysisResults(analysis) {
                 let htmlContent = '';
-                const t = translations[currentLang];
-
-                // Memastikan struktur hasil yang profesional
-                htmlContent += `<div class="result-item"><h3>${t.headerTitle}:</h3><p><strong>${analysis.direction || 'N/A'}</strong></p></div>`;
-                
-                if (analysis.rationale) {
-                     htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Rationale/Key Takeaways' : 'Alasan/Poin Utama'}:</h3><p>${analysis.rationale}</p></div>`;
+                if (typeof analysis === 'string') {
+                    htmlContent = `<p>${analysis.replace(/\n/g, '<br>')}</p>`; // Basic newline conversion
+                } else if (typeof analysis === 'object') {
+                    // This assumes AI's JSON output keys are consistent (direction, rationale etc.)
+                    // You might need to translate these keys if AI doesn't return them in the selected language.
+                    // For now, let's assume AI's response for direction/rationale will be in the requested language.
+                    htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Market Direction' : 'Arah Pasar'}:</h3><p><strong>${analysis.direction || 'N/A'}</strong></p></div>`;
+                    if (analysis.rationale) {
+                         htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Rationale' : 'Alasan'}:</h3><p>${analysis.rationale}</p></div>`;
+                    }
+                    if (analysis.support) {
+                        htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Support Level' : 'Level Dukungan'}:</h3><p>${analysis.support}</p></div>`;
+                    }
+                     if (analysis.resistance) {
+                        htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Resistance Level' : 'Level Resistensi'}:</h3><p>${analysis.resistance}</p></div>`;
+                    }
+                    if (analysis.riskWarning) {
+                        htmlContent += `<div class="result-item warning-message"><h3>${currentLang === 'en' ? 'Risk Warning' : 'Peringatan Risiko'}:</h3><p>${analysis.riskWarning}</p></div>`;
+                    }
+                } else {
+                    htmlContent = `<p class="placeholder-text">${translations[currentLang].placeholderAnalysis}</p>`;
                 }
-                if (analysis.support) {
-                    htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Support Level' : 'Level Dukungan'} (${timeframeSelect.value}):</h3><p>${analysis.support}</p></div>`;
-                }
-                if (analysis.resistance) {
-                    htmlContent += `<div class="result-item"><h3>${currentLang === 'en' ? 'Resistance Level' : 'Level Resistensi'} (${timeframeSelect.value}):</h3><p>${analysis.resistance}</p></div>`;
-                }
-                
-                // Peringatan Risiko diletakkan di bagian akhir dengan styling khusus
-                if (analysis.riskWarning) {
-                    htmlContent += `<div class="result-item warning-message"><h3>${currentLang === 'en' ? '⚠️ Risk Warning' : '⚠️ Peringatan Risiko'}:</h3><p>${analysis.riskWarning}</p></div>`;
-                }
-                
                 analysisResultDiv.innerHTML = htmlContent;
             }
         });
